@@ -122,4 +122,3 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = '/webapps/qvpa/qvpa_system/static'
-
