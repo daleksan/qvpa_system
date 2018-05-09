@@ -15,6 +15,7 @@ class RemoteUserBackend(BaseRemoteUserBackend):
                                    settings.DIADICE_LDAP_PASSWORD)
         try:
             user_info = diadice_ldap.get_user_info(user.username)
+            print ("234")
         except Exception, e:
             logger.warning("Failed to get user info: %s" % e)
         else:

@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+<!-- {% url 'manageGame' game.id as manageGameURL %}
+{% url 'createGame' as createGameURL %}
+{% url 'registerOnGame' as registerOnGameURL %} -->
+
+{% block content %}
+<!--content -->
+<div class="panel panel-primary content">
+  <div class="panel-body">
+    <div class="container-fluid text-center">    
+      <div class="row content column-parent">
+      <!-- Left column -->
+        <div class="col-sm-3 sidenav">
+          <div class="panel panel-primary content">
+            <div class="panel-body">
+              <ul class="nav nav-pills nav-stacked">
+                <li {% if profileURL %} class="active" {% endif %}><a href="{{ profileURL }}">Профиль</a></li>
+                {% if killer %}
+                <li><a href="{% url 'userStatistics' %}">Моя статистика</a></li>
+                {% endif %}
+                <!-- Register On Game -->
+                {% for game in games %}
+                {% if game.get_game_status == 'Идет Регистрация' %}
+                <li {% if killer %} class="disabled" {% elif currentURL == '/registerOnGame/{game.id}' %} class="active" {% endif %}><a {% if not killer %} href="{% url 'registerOnGame' game.id %}" {% endif %}>Регистрация на игру</a></li>
+                {% endif %}
+                {% endfor %}
+                <!-- end of register on game -->
+
+                <!-- Confirm a kill -->
+                {% if killer %}
+                {% for game in games %}
+                <li {% if game.get_game_status != 'Игра Началась' or not killer.is_alive %} class="disabled" {% endif %}><a {% if killer.is_alive %} href="{% url 'confirmKill' %}" {% endif %}>Зафиксировать убийство</a></li>
+                {% endfor %}
+                {% endif %}
+                <!-- end of confirm a kill -->
+
+                <!-- Create a Game -->
+                {% if user.is_staff %}
+                <li><a href="{% url 'createGame' %}">Создать Игру</a></li>
+                {% if games %}
+                <li class="dropdown">
+                  <a class="dropdown-toggle" data-toggle="dropdown" href="#">Управление играми
+                  <span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    {% for game in games %}
+                    <li><a href="{% url 'manageGame' game.id %}">{{ game.get_game_name }}</a></li>
+                    {% endfor %}
+                  </ul>
+                </li>
+                {% endif %}
+                {% endif %}
+                <!-- end of create a game -->
+              </ul>
+            </div>
+          </div>
+        </div>
+        <!-- end of left column -->
+        <!-- center -->
+        {% block profile_content %}
+        {% endblock %}
+        <!-- end of center -->
+        <!-- right column -->
+        <div class="col-sm-3 sidenav">
+          <div class="panel panel-primary column content">
+            <div class="panel-body">
+              <img align="center" src="{% static 'images/user.jpg' %}" class="img-thumbnail" alt="user avatar" width="75%" height="75%">
+              <h4>Общая информация</h4>
+              <ul class="profile-details">
+                <li><div class="header"><span class="glyphicon glyphicon-info-sign"></span> Имя и Фамилия:</div><div class="body">{{ user.get_full_name }}</div></li>
+                <li><div class="header"><span class="glyphicon glyphicon-education"></span> Номер группы:</div><div class="body">{{ user.group_number }}</div></li>
+              </ul>
+              <h4>Контактная информация</h4>
+              <ul class="profile-details">
+                <li><div class="header"><span class="glyphicon glyphicon-phone"></span> Номер телефона:</div><div class="body">{{ user.mobile_phone }}</div></li>
+                <li><div class="header"><span class="glyphicon glyphicon-envelope"></span> Email:</div><div class="body">{{ user.email }}</div></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <!-- end of right column -->
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

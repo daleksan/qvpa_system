@@ -1,0 +1,111 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+  
+{% block content %}
+
+<!--content -->
+<div class="panel panel-primary content">
+      <div class="panel-body">
+<div class="container-fluid text-center">    
+  <div class="row content column-parent">
+ <!-- Left column -->
+    <div class="col-sm-3 sidenav">
+    <div class="panel panel-primary content">
+      <div class="panel-body">
+      <ul class="nav nav-pills nav-stacked">
+        <li><a href="{% url 'profile' %}">Профиль</a></li>
+        {% if killer %}
+        <li><a href="{% url 'userStatistics' %}">Моя статистика</a></li>
+        {% endif %}
+        <!-- Register On Game -->
+        {% for game in games %}
+        {% if game.get_game_status == 'Идет Регистрация' %}
+        <li {% if killer %} class="disabled" {% endif %}><a {% if not killer %} href="{% url 'registerOnGame' game.id %}" {% endif %}>Регистрация на игру</a></li>
+        {% endif %}
+        {% endfor %}
+        <!-- end of register on game -->
+
+        <!-- Confirm a kill -->
+        {% if killer %}
+        {% for game in games %}
+        <li {% if game.get_game_status != 'Игра Началась' or not killer.is_alive %} class="disabled" {% endif %}><a {% if killer.is_alive %} href="{% url 'confirmKill' %}" {% endif %}>Зафиксировать убийство</a></li>
+        {% endfor %}
+        {% endif %}
+        <!-- end of confirm a kill -->
+
+        <!-- Create a Game -->
+        {% if user.is_staff %}
+        <li class="active"><a href="{% url 'createGame' %}">Создать Игру</a></li>
+        {% if games %}
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#">Управление играми
+          <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            {% for game in games %}
+            <li><a href="{% url 'manageGame' game.id %}">{{ game.get_game_name }}</a></li>
+            {% endfor %}
+          </ul>
+        </li>
+        {% endif %}
+        {% endif %}
+        <!-- end of create a game -->
+
+      </ul>
+      </div>
+      </div>
+    </div>
+    <!-- end of left column -->
+    <!-- center -->
+    <div class="col-sm-6 text-left">
+    {% if error_message %}
+      <div id="alert-failed" class="alert alert-danger alert-dismissable fade in"><span class="glyphicon glyphicon-exclamation-sign"></span> {{ error_message }}</div>
+    {% endif %}
+    <div class="panel panel-primary content">
+      <div class="panel-body">
+      <form method="post" class="form-horizontal">
+      {% csrf_token %}
+      {% for field in form %}
+        <div class="form-group">
+          <label class="control-label col-sm-3" for="id_{{ field.name}}">{{ field.label }}:</label>
+          <div class="col-sm-8">
+          {{ field }}
+          {% for error in field.errors %}
+          <p class="bg-danger text-left" style="margin-top: 5px;color: #a94442"> <span class="glyphicon glyphicon-exclamation-sign" style="margin-left: 5px;"></span> {{ error }}</p>
+          {% endfor %}
+          </div>
+        </div>
+      {% endfor %}
+        <div class="form-group">
+          <div class="col-sm-offset-1">
+          <button type="submit" class="btn btn-primary">Создать игру</button>
+        </div>
+    </div>
+  </form>
+  </div>
+    </div>
+    </div>
+    <!-- end of center -->
+    <!-- right column -->
+    <div class="col-sm-3 sidenav">
+    <div class="panel panel-primary content">
+      <div class="panel-body">
+      <img align="center" src="{% static 'images/user.jpg' %}" class="img-thumbnail" alt="user avatar" width="75%" height="75%">
+      <h4>Общая информация</h4>
+      <ul class="profile-details">
+      <li><div class="header"><span class="glyphicon glyphicon-info-sign"></span> Имя и Фамилия:</div><div class="body">{{ user.get_full_name }}</div></li>
+      <li><div class="header"><span class="glyphicon glyphicon-education"></span> Номер группы:</div><div class="body">{{ user.group_number }}</div></li>
+      </ul>
+      <h4>Контактная информация</h4>
+      <ul class="profile-details">
+      <li><div class="header"><span class="glyphicon glyphicon-phone"></span> Номер телефона:</div><div class="body">{{ user.mobile_phone }}</div></li>
+      <li><div class="header"><span class="glyphicon glyphicon-envelope"></span> Email:</div><div class="body">{{ user.email }}</div></li>
+      </ul>
+      </div>
+    </div>
+    </div>
+    <!-- end of right column -->
+  </div>
+</div>
+</div>
+</div>
+{% endblock %}

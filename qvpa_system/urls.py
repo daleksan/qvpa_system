@@ -20,9 +20,11 @@ from django.conf.urls.static import static
 from rest_framework.documentation import include_docs_urls
 
 urlpatterns = [
+    url(r'^', include('apps.main.urls')),
     url(r'^admin/', admin.site.urls),
     url(r'^api/v2/', include('api.v2.urls', namespace='api-v2')),
     url(r'^docs/', include_docs_urls(title='API v2'))
 ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

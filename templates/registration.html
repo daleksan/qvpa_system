@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+  
+{% block content %}
+{% if error_message %}
+  <div id="alert-failed" class="alert alert-danger alert-dismissable fade in"><span class="glyphicon glyphicon-exclamation-sign"></span> {{ error_message }}</div>
+{% endif %}
+<div class="well content">
+  <form method="post" class="form-horizontal">
+    {% csrf_token %}
+    {% for field in form %}
+      <div class="form-group">
+        <label class="control-label col-sm-3" for="id_{{ field.name}}">{{ field.label }}:</label>
+        <div class="col-sm-8">
+        {{ field }}
+        {% for error in field.errors %}
+        <p class="bg-danger text-left" style="margin-top: 5px;color: #a94442"> <span class="glyphicon glyphicon-exclamation-sign" style="margin-left: 5px;"></span> {{ error }}</p>
+        {% endfor %}
+        </div>
+      </div>
+    {% endfor %}
+      <div class="form-group">
+        <div class="col-sm-offset-1">
+        <button type="submit" class="btn btn-primary">Зарегистрироваться</button>
+      </div>
+    </div>
+  </form>
+</div>
+{% endblock %}

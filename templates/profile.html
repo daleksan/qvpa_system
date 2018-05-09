@@ -1,0 +1,22 @@
+{% extends 'profile_base.html' %}
+{% load staticfiles %}
+  
+{% block profile_content %}
+<!-- center -->
+<div class="col-sm-6 text-left"> 
+  <div class="panel panel-primary column content">
+    <div class="panel-body">
+      <div class="page-header">
+        <h3>Добро пожаловать, Киллер!</h3>
+      </div>
+      {% for game in games %}
+      <h4>{{ game.get_game_status }}</h4>
+      {% endfor %}
+      <div align="center"><img src="{% static 'images/afisha.jpg' %}" class="img-rounded" width="90%" height="80%"></div>
+      <hr>
+      <p>Удачи на игре!</p>
+    </div>
+  </div>
+</div>
+<!-- end of center -->
+{% endblock %}
