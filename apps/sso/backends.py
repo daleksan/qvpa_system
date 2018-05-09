@@ -11,10 +11,10 @@ logger = logging.getLogger()
 
 class RemoteUserBackend(BaseRemoteUserBackend):
     def configure_user(self, user):
-        intel_ldap = DiadiceLDAP(settings.DIADICE_LDAP_USERNAME,
-                                 settings.DIADICE_LDAP_PASSWORD)
+        diadice_ldap = DiadiceLDAP(settings.DIADICE_LDAP_USERNAME,
+                                   settings.DIADICE_LDAP_PASSWORD)
         try:
-            user_info = intel_ldap.get_user_info(user.username)
+            user_info = diadice_ldap.get_user_info(user.username)
         except Exception, e:
             logger.warning("Failed to get user info: %s" % e)
         else:

@@ -13,12 +13,16 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
-from django.conf.urls import url
+from django.conf.urls import include, url
 from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
+from rest_framework.documentation import include_docs_urls
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+    url(r'^api/v2/', include('api.v2.urls', namespace='api-v2')),
+    url(r'^docs/', include_docs_urls(title='API v2'))
+]
 
+urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
