@@ -1,0 +1,52 @@
+#pageContent {
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+  padding-top: 115px;
+  padding-bottom: 115px;
+}
+
+.loginPage {
+  width: 400px;
+  height: 100%;
+  margin: 0 auto;
+  padding: 0;
+  text-align: left;
+}
+
+.page-content-wrapper {
+  display: table;
+  height: 100%;
+  width: 100%;
+}
+
+.note {
+  color: #6f7275;
+  width: 100%;
+  text-align: center;
+  margin-top: 2em;
+  margin-bottom: 0.5em;
+}
+
+.buttons {
+  text-align: center;
+  margin-top: 1em;
+  position: relative
+}
+
+#pageContent h1 {
+  margin-top: 30px
+  padding: 0;
+  font-size: 230%;
+  font-weight: 200;
+}
+
+#pageContent .form-group {
+  width: 20em;
+  margin: 0 auto 1em;
+  text-align: left;
+}
+
+#pageContent .btn {
+  width: 100%;
+}
