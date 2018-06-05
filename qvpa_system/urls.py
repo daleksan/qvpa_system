@@ -21,6 +21,9 @@ from rest_framework.documentation import include_docs_urls
 
 urlpatterns = [
     url(r'^', include('apps.main.urls')),
+    url(r'^', include('apps.projects.urls')),
+    url(r'^', include('apps.statistics.urls')),
+    url(r'^', include('apps.employees.urls')),
     url(r'^admin/', admin.site.urls),
     url(r'^api/v2/', include('api.v2.urls', namespace='api-v2')),
     url(r'^docs/', include_docs_urls(title='API v2'))

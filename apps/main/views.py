@@ -2,7 +2,8 @@
 from __future__ import unicode_literals
 
 from django.shortcuts import render
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
+from django.http import HttpResponseRedirect
 from .forms import LoginForm
 
 
@@ -18,10 +19,18 @@ def loginView(request):
             if user is not None:
                 if user.is_active:
                     login(request, user)
+                    return HttpResponseRedirect('projects/')
                 else:
                     print("Аккаунт был отключен!")
             else:
                 error_message = "Пользователя с таким логином и паролем не существует!"
+    elif request.user.is_authenticated:
+        return HttpResponseRedirect('projects/')
     else:
         form = LoginForm()
     return render(request, 'index.html', locals())
+
+
+def logoutView(request):
+    logout(request)
+    return HttpResponseRedirect('/')

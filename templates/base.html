@@ -11,8 +11,54 @@
     <title>Quality vs Performance Analyzer</title>
 </head>
 <body>
+{% if messages %}
+  {% for message in messages %}
+  <div id="alert" class="alert {{ message.tags }} alert-dismissable fade in"><span class="glyphicon glyphicon-exclamation-sign"></span> {{ message }}</li> </div>
+  {% endfor %}
+{% endif %}
+
+
+{% url 'statistics' as statisticsURL %}
+{% url 'projects' as projectsURL %}
+{% url 'employees' as employeesURL %}
+{% url 'logout' as logoutURL %}
+{% url 'login' as loginURL %}
+
+{% if user.is_authenticated %}
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span> 
+      </button>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav comp-nav">
+        <li {% if currentUrl == projectsURL %} class="active" {% endif %}><a href="{{ projectsURL }}">Projects</a></li>
+        <li {% if currentUrl == employeesURL %} class="active" {% endif %}><a href="{{ employeesURL }}">Employees</a></li>
+        <li {% if currentUrl == statisticsURL %} class="active" {% endif %}><a href="{{ statisticsURL }}">Statistics</a></li>
+      </ul>
+      <ul class="nav navbar-nav comp-nav1 navbar-right">
+        {% if user.is_authenticated %}
+        {% if user.is_staff %}
+        <li><a><span class="glyphicon glyphicon-user"></span> {{ user.username }}</a></li>
+        <li><a href="/admin"><span class="glyphicon glyphicon-wrench"></span> Settings</a></li>
+        {% endif %}
+        <li><a href="{{ logoutURL }}"><span class="glyphicon glyphicon-log-out"></span> Log out</a></li>
+        {% endif %}
+      </ul>
+    </div>
+  </div>
+</nav>
+{% endif %}
 <!-- end navigation -->
 {% block content %}
 {% endblock %}
+<script src="{% static 'utils/jquery.min.js' %}"></script>
+<script src="{% static 'utils/utils.js' %}"></script>
+<script>$('#alert').delay(3000).hide(500);</script>
+<script type="text/javascript" src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
 </body>
 </html>

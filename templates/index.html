@@ -2,6 +2,9 @@
 {% load staticfiles %}
 
 {% block content %}
+{% if error_message %}
+  <div id="alert" class="alert alert-danger alert-dismissable fade in"><span class="glyphicon glyphicon-exclamation-sign"></span> {{ error_message }}</div>
+{% endif %}
 <div class="loginPage">
   <div class="page-content-wrapper"> 
     <div id="pageContent">
@@ -23,7 +26,7 @@
         </div>
       </form>
       <div class="note">
-        <span class="vWord">* QVPA - Quality vs Performance Analyzer</span>
+        <span>* QVPA - Quality vs Performance Analyzer</span>
       </div>
     </div>
   </div>
