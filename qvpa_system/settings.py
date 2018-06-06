@@ -32,7 +32,10 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
+JIRA_SERVER = 'http://jira.diadice.net'
 
+JIRA_USERNAME = 'daleksan'
+JIRA_PASSWORD = '6554322Alexandrov'
 # Application definition
 
 INSTALLED_APPS = [

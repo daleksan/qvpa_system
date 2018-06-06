@@ -1,6 +1,25 @@
 {% extends 'base.html' %}
 {% load staticfiles %}
   
-{% block content %}
-
+{% block content %}       
+  <table class="table table-striped table-bordered table-responsive">
+    <thead>
+      <tr>
+        <th>Project name</th>
+        <th>Number of employees</th>
+        <!-- <th>Average value of efficiently</th> -->
+        <!-- <th>Actions</th> -->
+      </tr>
+    </thead>
+    <tbody>
+    {% for key, value in project_info.items %}
+      <tr>
+        <td>{{ key }}</td>
+        <td>{{ value }}</td>
+        <!-- <td>0.78</td> -->
+        <!-- <td><button type="button" class="btn btn-default">Analyze</button></td> -->
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
 {% endblock %}

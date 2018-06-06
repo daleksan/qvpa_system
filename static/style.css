@@ -50,3 +50,11 @@
 #pageContent .btn {
   width: 100%;
 }
+
+.navbar {
+  margin-bottom: 0px;
+}
+
+/*.navbar-brand {
+  width: 450px;
+}*/

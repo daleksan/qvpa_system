@@ -2,4 +2,42 @@
 {% load staticfiles %}
   
 {% block content %}
+<table class="table table-striped table-bordered table-responsive">
+  <thead>
+    <tr>
+      <th>Employee name</th>
+      <th>Position</th>
+      <th>Quality rate</th>
+      <th>Performance rate</th>
+      <th>Efficiency rate</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>John Doe</td>
+      <td>Software Validation Test Engineer</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td><button type="button" class="btn btn-default">Analyze</button></td>
+    </tr>
+    <tr>
+      <td>Chris Taylor</td>
+      <td>Software Engineer</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td><button type="button" class="btn btn-default">Analyze</button></td>
+    </tr>
+    <tr>
+      <td>Doug Fisher</td>
+      <td>Intern</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td><button type="button" class="btn btn-default">Analyze</button></td>
+    </tr>
+  </tbody>
+</table>
 {% endblock %}
