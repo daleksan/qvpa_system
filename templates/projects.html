@@ -7,19 +7,29 @@
       <tr>
         <th>Project name</th>
         <th>Number of employees</th>
-        <!-- <th>Average value of efficiently</th> -->
-        <!-- <th>Actions</th> -->
+        <th>Average value of efficiently</th>
+        <th>Actions</th>
       </tr>
     </thead>
     <tbody>
-    {% for key, value in project_info.items %}
       <tr>
-        <td>{{ key }}</td>
-        <td>{{ value }}</td>
-        <!-- <td>0.78</td> -->
-        <!-- <td><button type="button" class="btn btn-default">Analyze</button></td> -->
+        <td>CPU Profiling Tool</td>
+        <td>2</td>
+        <td>1.78</td>
+        <td><button type="button" class="btn btn-success disabled">Analyze</button></td>
       </tr>
-    {% endfor %}
+      <tr>
+        <td>Sample tool</td>
+        <td>2</td>
+        <td>1.53</td>
+        <td><button type="button" class="btn btn-success disabled">Analyze</button></td>
+      </tr>
+      <tr>
+        <td>GPU Profiling Tool</td>
+        <td>3</td>
+        <td>1.59</td>
+        <td><button type="button" class="btn btn-success disabled">Analyze</button></td>
+      </tr>
     </tbody>
   </table>
 {% endblock %}
