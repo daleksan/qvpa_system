@@ -7,9 +7,9 @@
     <tr>
       <th>Employee name</th>
       <th>Position</th>
-      <th>Quality rate</th>
-      <th>Performance rate</th>
-      <th>Efficiency rate</th>
+      <th>Quality rate <a data-toggle="modal" data-target="#QualityModal"><span class="glyphicon glyphicon-question-sign"></span></th>
+      <th>Performance rate <a data-toggle="modal" data-target="#PerformanceModal"><span class="glyphicon glyphicon-question-sign"></span></th>
+      <th>Efficiency rate <a data-toggle="modal" data-target="#EfficiencyModal"><span class="glyphicon glyphicon-question-sign"></span></th>
       <th>Actions</th>
     </tr>
   </thead>
@@ -40,4 +40,91 @@
     </tr>
   </tbody>
 </table>
+<div id="QualityModal" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-sm">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Quality rating:</h4>
+      </div>
+      <div class="modal-body">
+        <img class="modal-image" src="{% static 'images/qualityRate.png' %}">
+        <hr>
+        <p>Where:</p>
+        <p><i><b><u>BugCount</u></b></i> - the number of defects for current employee</p>
+        <p><i><b><u>TaskCount</u></b></i> - the number of tasks for current employee</p>
+        <hr>
+        <p>Values:</p>
+        <p>"-1.0" - Worst indicator</p>
+        <p>"1.0" - Best indicator</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+<div id="PerformanceModal" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-sm">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Performance rating:</h4>
+      </div>
+      <div class="modal-body">
+        <img class="modal-image" src="{% static 'images/performanceRate.png' %}">
+        <hr>
+        <p>Where:</p>
+        <p><i><b><u>Time</u></b></i> - a certain time interval in days</p>
+        <p><i><b><u>TaskCount</u></b></i> - the number of tasks for current employee</p>
+        <p><i><b><u>TimeEstimataion</u></b></i> - time estimation that was spent on the work for this task</p>
+        <p><i><b><u>StoryPoint</u></b></i> - the complexity of the task</p>
+        <hr>
+        <p>Values:</p>
+        <p>"0.0" - Worst indicator</p>
+        <p>"1.0" - Best indicator</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+<div id="EfficiencyModal" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-sm">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Efficiency rating:</h4>
+      </div>
+      <div class="modal-body">
+        <img class="modal-image" src="{% static 'images/efficiencyRate.png' %}">
+        <hr>
+        <p>Where:</p>
+        <p><i><b><u>BugCount</u></b></i> - The number of defects for current employee</p>
+        <p><i><b><u>TaskCount</u></b></i> - The number of tasks for current employee</p>
+        <p><i><b><u>Time</u></b></i> - a certain time interval in days</p>
+        <p><i><b><u>TimeEstimataion</u></b></i> - time estimation that was spent on the work for this task</p>
+        <p><i><b><u>StoryPoint</u></b></i> - the complexity of the task</p>
+        <p><i><b><u>n</u></b></i> - the number of employees</p>
+        <hr>
+        <p>Values:</p>
+        <p>"-1.0" - Worst indicator</p>
+        <p>"2.0" - Best indicator</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
 {% endblock %}
