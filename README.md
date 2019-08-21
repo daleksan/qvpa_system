@@ -9,3 +9,5 @@ This is the system that analyse Jira metrics and provide feedback about employee
 4) Install postgresql9.6
 5) Create Role 'qvpa_db_admin' with password('qwerty' by default)
 6) Create DB with owner qvpa_db_admin: 'qvpa_db'
+
+# Test
