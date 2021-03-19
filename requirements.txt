@@ -19,7 +19,7 @@ gunicorn==19.8.1
 idna==2.6
 ipaddress==1.0.22
 itypes==1.1.0
-Jinja2==2.10
+Jinja2==2.11.3
 jira==1.0.15
 Markdown==2.6.11
 MarkupSafe==1.0
